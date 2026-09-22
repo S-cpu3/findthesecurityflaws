@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Training Demo - Vulnerability Examples</title>
+    <!-- 
+        ⚠️ EDUCATIONAL USE ONLY ⚠️
+        This page intentionally contains security vulnerabilities for training purposes.
+        DO NOT deploy this code in production.
+        DO NOT use real credentials or exploit real systems.
+    -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .credential-display {
+            background-color: #ffebee;
+            border: 1px solid #c62828;
+            padding: 15px;
+            font-family: monospace;
+            margin-top: 20px;
+        }
+        .vulnerable-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #6d4aff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5a42cc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Security Training Portal</h1>
+        
+        <div class="warning-box">
+            <strong>Training Environment:</strong> This page demonstrates common web vulnerabilities
+            for educational purposes. Always practice secure coding in production environments.
+        </div>
+
+        <section id="credentials-demo">
+            <h2>Vulnerability 1: Hardcoded Credentials</h2>
+            <p>Developers sometimes accidentally leave credentials in client-side code.</p>
+            
+            <button onclick="showCredentials()">Reveal Configuration</button>
+            
+            <div class="credential-display" id="cred-container" style="display: none;">
+                <h4>⚠️ SENSITIVE CONFIGURATION DATA</h4>
+                <p><strong>API_KEY:</strong> sk_test_demo_key_12345abcde (DEMO - Not Real)</p>
+                <p><strong>Database Host:</strong> db.internal.local</p>
+                <p><strong>Admin Email:</strong> admin@example.com</p>
+            </div>
+        </section>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+
+        <section id="xss-demo">
+            <h2>Vulnerability 2: Cross-Site Scripting (XSS)</h2>
+            <p>This form accepts user input without proper sanitization.</p>
+            
+            <input type="text" 
+                   class="vulnerable-input" 
+                   id="username" 
+                   placeholder="Enter your name for greeting..."
+                   autocomplete="off">
+            <button onclick="greetUser()">Submit</button>
+            
+            <div id="greeting" style="margin-top: 20px; font-size: 1.2em;"></div>
+            
+            <div class="warning-box" style="margin-top: 30px;">
+                <strong>XSS Payload Example (for testing):</strong><br>
+                Try entering: <code>&lt;img src=x onerror=alert('XSS')&gt;</code><br>
+                <small>This demonstrates how malicious scripts execute in user browsers.</small>
+            </div>
+        </section>
+
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+
+        <section id="lesson-section">
+            <h2>How to Prevent These Issues</h2>
+            <ul>
+                <li><strong>Credentials:</strong> Never store secrets in client-side code. Use environment variables, server-side configuration, or secure secret management systems.</li>
+                <li><strong>XSS:</strong> Sanitize and encode all user inputs. Use Content Security Policy headers. Implement output encoding. Validate inputs server-side.</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // ============================================
+        // WARNING: This JavaScript contains vulnerabilities FOR EDUCATION ONLY
+        // ============================================
+
+        // VULNERABILITY 1: Hardcoded credentials
+        // In real code, NEVER do this!
+        const SECRET_CONFIG = {
+            api_key: 'sk_test_demo_key_12345abcde',
+            database_host: 'db.internal.local',
+            admin_email: 'admin@example.com'
+        };
+
+        function showCredentials() {
+            document.getElementById('cred-container').style.display = 'block';
+            console.log('Exposed credentials:', SECRET_CONFIG);
+        }
+
+        // VULNERABILITY 2: Unsafe DOM manipulation (XSS)
+        // In real code, NEVER use innerHTML with user input!
+        function greetUser() {
+            const userInput = document.getElementById('username').value;
+            // This is unsafe - allows script injection
+            document.getElementById('greeting').innerHTML = 
+                '<strong>Welcome!</strong> Hello, ' + userInput;
+        }
+
+        // SECURITY NOTE: Proper fix would use textContent or DOMParser
+        // Safe version:
+        /*
+        function greetUserSafe() {
+            const userInput = document.getElementById('username').value;
+            const greetingEl = document.getElementById('greeting');
+            greetingEl.textContent = 'Welcome! Hello, ' + userInput;
+        }
+        */
+    </script>
+    
+    <footer style="margin-top: 40px; text-align: center; color: #666;">
+        <p><small>Educational Demo | Created for Security Awareness Training</small></p>
+    </footer>
+</body>
+</html>
