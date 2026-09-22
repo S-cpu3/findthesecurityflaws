@@ -39,7 +39,7 @@ Step 1: Navigate to the Contact form section at the bottom of the CloudSync Pro 
 
 Step 2: Clear all fields in the form and prepare to test the Name input field.
 
-Step 3: In the Name field, paste the following payload: <script>alert('XSS')</script>
+Step 3: In the Name field, paste the following payload:  <img src=x onerror=alert('XSS')> (or any thing instead of XSS)
 
 Step 4: Leave the Email and Message fields empty or fill them with normal text.
 
