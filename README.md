@@ -6,6 +6,7 @@ Answer Key:
 Steps to Reproduce: 
 
 Issue #1: Hardcoded Credentials
+
 Step 1: Open the CloudSync Pro webpage in your browser.
 
 Step 2: Right-click anywhere on the page and select "View Page Source" (or press Ctrl+U).
@@ -33,6 +34,7 @@ Step 12: The console will display the full API key, proving it is exposed in the
 Step 13: Record this finding in your lab report with the exact location where you discovered the credentials.
 
 Issue #2: Cross-Site Scripting (XSS)
+
 Step 1: Navigate to the Contact form section at the bottom of the CloudSync Pro page.
 
 Step 2: Clear all fields in the form and prepare to test the Name input field.
