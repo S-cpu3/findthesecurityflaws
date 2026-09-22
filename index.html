@@ -140,10 +140,6 @@
             <p style="color: #888; font-size: 14px; margin-top: 20px;">San Francisco • New York • London • Singapore</p>
         </div>
     </footer>
-
-    <!-- ===================================================== -->
-    <!-- ⚠️ VULNERABLE CODE BELOW - FOR EDUCATIONAL PURPOSES ⚠️ -->
-    <!-- ===================================================== -->
     <script>
         // Simulate API integration setup - developers sometimes leave config in client code
         const APP_CONFIG = {
@@ -177,7 +173,6 @@
             // Simulating API call...
             const responseContainer = document.getElementById('response-message');
             
-            // ⚠️ VULNERABILITY: Using innerHTML with unsanitized user input
             responseContainer.innerHTML = `
                 <div style="background: #d4edda; padding: 15px; border-radius: 6px; border-left: 4px solid #28a745;">
                     <strong>Thank you, ${name}!</strong> ✓<br>
