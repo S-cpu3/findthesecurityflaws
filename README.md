@@ -15,3 +15,6 @@ Step 3: Find username and password for site
 
 Hardcoded Secrets / Credential Exposure (CWE-798) and Information Disclosure (CWE-200)
 
+
+XSS payload: <img src=x onerror=alert('XSS')>
+
