@@ -3,204 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CloudSync Pro - Enterprise Cloud Storage Solution">
-    <title>CloudSync Pro | this is not a real website</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☁️</text></svg>">
+    <title>CloudSync Pro | Admin Login</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
-        header { background: rgba(255,255,255,0.95); padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .logo { font-size: 24px; font-weight: bold; color: #667eea; }
-        .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: #667eea; }
-        .btn-primary { background: #667eea; color: white; padding: 12px 24px; border: none; border-radius: 25px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
-        .btn-primary:hover { background: #5a6fd6; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102,126,234,0.3); }
-        .hero { text-align: center; padding: 80px 20px; color: white; }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; }
-        .hero p { font-size: 20px; margin-bottom: 30px; opacity: 0.9; }
-        .main-content { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .feature-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .feature-card h3 { color: #667eea; margin-bottom: 15px; }
-        .contact-section { background: white; border-radius: 10px; padding: 40px; margin-top: 60px; }
-        .contact-form { max-width: 500px; margin: 0 auto; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            min-height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-container { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 { color: #667eea; margin-bottom: 30px; text-align: center; }
         .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
-        .form-group textarea { resize: vertical; min-height: 100px; }
-        .response-area { background: #f8f9fa; padding: 20px; border-left: 4px solid #667eea; margin-top: 20px; border-radius: 4px; }
-        .stats-section { display: flex; justify-content: space-around; background: white; padding: 40px; border-radius: 10px; margin-top: 40px; }
-        .stat-item { text-align: center; }
-        .stat-number { font-size: 42px; color: #667eea; font-weight: bold; }
-        footer { background: #1a1a2e; color: white; padding: 40px 20px; margin-top: 60px; }
-        .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
-        .footer-links { margin: 20px 0; }
-        .footer-links a { color: #ccc; text-decoration: none; margin: 0 15px; }
-        .badge { background: #28a745; color: white; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+        .form-group label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 500;
+            color: #333;
+        }
+        .form-group input { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 6px; 
+            font-size: 14px;
+        }
+        .btn-primary { 
+            background: #667eea; 
+            color: white; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 25px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            width: 100%;
+            font-size: 16px;
+        }
+        .btn-primary:hover { 
+            background: #5a6fd6; 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+        }
+        .error-message { 
+            background: #f8d7da; 
+            color: #721c24; 
+            padding: 10px; 
+            border-radius: 4px; 
+            margin-top: 15px; 
+            display: none;
+            border-left: 4px solid #dc3545;
+        }
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+            border-left: 4px solid #28a745;
+        }
+        .hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">☁️ CloudSync Pro - This is a not a real product or company</div>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#" class="btn-primary">Get Started</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>Enterprise Cloud Storage</h1>
-        <p>Secure, scalable, and lightning-fast cloud solutions for modern businesses</p>
-        <button class="btn-primary">Start Free Trial</button>
-    </section>
-
-    <div class="main-content">
-        <div class="feature-grid" id="features">
-            <div class="feature-card">
-                <h3>🔒 Bank-Level Security</h3>
-                <p>Your data is encrypted end-to-end with AES-256 encryption. We take your privacy seriously and comply with GDPR, HIPAA, and SOC 2 standards.</p>
+    <div class="login-container">
+        <h1>🔐 Admin Login</h1>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required placeholder="Enter username">
             </div>
-            <div class="feature-card">
-                <h3>⚡ Fast Sync Technology</h3>
-                <p>Sync files across all devices in milliseconds with our proprietary delta-sync algorithm. No more waiting for large uploads.</p>
-            </div>
-            <div class="feature-card">
-                <h3>👥 Team Collaboration</h3>
-                <p>Share folders, set permissions, and collaborate in real-time. Perfect for remote teams and distributed organizations.</p>
-            </div>
-        </div>
-
-        <div class="stats-section">
-            <div class="stat-item">
-                <div class="stat-number">50M+</div>
-                <div>Files Stored</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">99.9%</div>
-                <div>Uptime Guarantee</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">15K+</div>
-                <div>Enterprise Clients</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number"><span class="badge">NEW</span></div>
-                <div>API v2.0</div>
-            </div>
-        </div>
-
-        <section class="contact-section" id="contact">
-            <h2 style="text-align: center; margin-bottom: 30px;">Get in Touch</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 30px;">Have questions? Our team is here to help you get started.</p>
             
-            <div class="contact-form">
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" placeholder="John Smith">
-                </div>
-                <div class="form-group">
-                    <label for="email">Business Email *</label>
-                    <input type="email" id="email" placeholder="john@company.com">
-                <div class="form-group">
-                    <label for="message">How can we help?</label>
-                    <textarea id="message" placeholder="Tell us about your project..."></textarea>
-                </div>
-                <button class="btn-primary" style="width: 100%;" onclick="handleSubmit()">Send Message</button>
-                <div id="response-message" style="margin-top: 20px;"></div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter password">
             </div>
-        </section>
-
-        <section style="margin-top: 60px; background: white; padding: 40px; border-radius: 10px;">
-            <h2 style="margin-bottom: 20px;">Why Choose CloudSync?</h2>
-            <p style="color: #666;">Trusted by Fortune 500 companies worldwide, CloudSync delivers enterprise-grade reliability with consumer-friendly pricing. Our platform processes over 1 billion file operations daily while maintaining industry-leading uptime.</p>
-            <div style="margin-top: 30px; display: flex; gap: 20px; flex-wrap: wrap;">
-                <span style="background: #f0f0f0; padding: 10px 20px; border-radius: 20px;">AWS Certified</span>
-                <span style="background: #f0f0f0; padding: 10px 20px; border-radius: 20px;">ISO 27001</span>
-                <span style="background: #f0f0f0; padding: 10px 20px; border-radius: 20px;">GDPR Compliant</span>
-                <span style="background: #f0f0f0; padding: 10px 20px; border-radius: 20px;">SOC 2 Type II</span>
-            </div>
-        </section>
+            
+            <button type="submit" class="btn-primary">Login</button>
+            
+            <div id="errorMessage" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+        </form>
+        
+        <p class="hint">Hint: Check the page source for troubleshooting info</p>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 CloudSync Inc. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Security</a>
-                <a href="#">Support</a>
-            </div>
-            <p style="color: #888; font-size: 14px; margin-top: 20px;">San Francisco • New York • London • Singapore</p>
-        </div>
-    </footer>
+    <!-- 
+        DEVELOPER NOTES:
+        Temporary debug credentials for testing environment
+        Remove before production deployment!
+    -->
+    
     <script>
-        // Simulate API integration setup - developers sometimes leave config in client code
-        const APP_CONFIG = {
+        // Configuration settings - DO NOT COMMIT TO PRODUCTION
+        const CONFIG = {
+            // Test credentials for QA team (REMOVE THIS!)
+            testUser: 'admin_qa',
+            testPass: 'Test@2026!Secure',
+            
+            // API configuration
             apiEndpoint: 'https://api.cloudsync-pro.com/v2',
-            apiKey: 'cs_live_sk_9KjH8mNpQrStUvWxYzAbCdEfGhIj',
-            region: 'us-west-2',
-            features: {
-                analytics: true,
-                betaFeatures: false,
-                debugMode: true
-            },
-            thirdPartyKeys: {
-                stripe: 'pk_live_51HwKjLMnOpQrStUvWxYz',
-                googleMaps: 'AIzaSyDaGmWKa4JsXZ-HjGw7ISLn_3namBGewQe'
+            sessionTimeout: 3600000
+        };
+
+        // Legacy authentication backup (deprecated but still functional)
+        const LEGACY_AUTH = {
+            adminPass: 'admin2026legacy',
+            emergencyAccess: 'EMRG-9X7K-PLANE-WINTER'
+        };
+
+        function validateLogin(username, password) {
+            console.log('Login attempt:', { user: username });
+            
+            // Check against hardcoded credentials (security anti-pattern!)
+            if (username === CONFIG.testUser && password === CONFIG.testPass) {
+                return { success: true, message: 'Welcome administrator!' };
             }
-        };
-
-        // Legacy config object - old version still referenced somewhere
-        const LEGACY_CREDENTIALS = {
-            serviceAccount: 'cloudsync-admin@internal',
-            dbHost: 'prod-cluster-01.cloudsync.internal:5432',
-            masterToken: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0'
-        };
-
-        // Form handler with XSS vulnerability
-        function handleSubmit() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
             
-            // Simulating API call...
-            const responseContainer = document.getElementById('response-message');
+            // Also accepts legacy credentials
+            if (username === 'admin_backup' && password === LEGACY_AUTH.adminPass) {
+                return { success: true, message: 'Legacy access granted.' };
+            }
             
-            responseContainer.innerHTML = `
-                <div style="background: #d4edda; padding: 15px; border-radius: 6px; border-left: 4px solid #28a745;">
-                    <strong>Thank you, ${name}!</strong> ✓<br>
-                    We've received your message and will respond to ${email} within 24 hours.<br>
-                    <small>Reference ID: ${Math.random().toString(36).substr(2, 9)}</small>
-                </div>
-            `;
+            // Emergency override (for development only!)
+            if (password === LEGACY_AUTH.emergencyAccess) {
+                return { success: true, message: 'Emergency access activated.' };
+            }
             
-            // Log for debugging (another subtle info leak)
-            console.log('Submission:', { name, email, message, timestamp: Date.now() });
+            return { success: false, message: 'Invalid credentials' };
         }
 
-        // Simulated analytics beacon
-        function trackEvent(eventType, eventData) {
-            fetch(`${APP_CONFIG.apiEndpoint}/analytics`, {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${APP_CONFIG.apiKey}` },
-                body: JSON.stringify({ event: eventType, data: eventData })
-            }).catch(() => {});
-        }
-
-        // Track page view on load
-        window.addEventListener('load', () => {
-            trackEvent('page_view', { url: window.location.href });
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            const result = validateLogin(username, password);
+            
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+            
+            if (result.success) {
+                successDiv.textContent = result.message;
+                successDiv.style.display = 'block';
+                
+                // Insecure: logs password to console
+                console.log('Login successful - Password used:', password);
+            } else {
+                errorDiv.textContent = result.message;
+                errorDiv.style.display = 'block';
+            }
         });
 
-        // Console warning for developers
-        console.log('%cCloudSync Pro API initialized', 'color: #667eea; font-weight: bold;');
+        // Debug console output (leaks credential hints)
+        console.log('%cSYSTEM DEBUG MODE ACTIVE', 'color: red; font-weight: bold;');
+        console.log('Environment: DEVELOPMENT');
+        console.log('Default credentials set in CONFIG object');
+        console.log('Emergency bypass enabled: check LEGACY_AUTH variable');
     </script>
 </body>
 </html>
