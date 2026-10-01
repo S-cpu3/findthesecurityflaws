@@ -8,5 +8,7 @@ Steps to Reproduce:
 Issue #1: Hardcoded Credentials
 
 Step 1: Inspect the page by right clicking on the website 
+
 Step 2: Click on <script>
+
 Step 3: Find username and password for site
