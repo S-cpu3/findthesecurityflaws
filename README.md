@@ -12,3 +12,6 @@ Step 1: Inspect the page by right clicking on the website
 Step 2: Click on <script>
 
 Step 3: Find username and password for site
+
+Hardcoded Secrets / Credential Exposure (CWE-798) and Information Disclosure (CWE-200)
+
