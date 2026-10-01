@@ -145,7 +145,8 @@
                 return { success: true, message: 'Emergency access activated.' };
             }
             
-            return { success: false, message: 'Invalid credentials' };
+            // VULNERABLE: Returns username in error message without sanitization
+            return { success: false, message: `Invalid credentials for user: ${username}`, userInput: username };
         }
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -169,7 +170,9 @@
                 // Insecure: logs password to console
                 console.log('Login successful - Password used:', password);
             } else {
-                errorDiv.textContent = result.message;
+                // XSS VULNERABILITY: Using innerHTML instead of textContent
+                // Allows injection of malicious HTML/JavaScript
+                errorDiv.innerHTML = result.message;
                 errorDiv.style.display = 'block';
             }
         });
